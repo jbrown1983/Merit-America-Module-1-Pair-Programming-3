@@ -1,5 +1,7 @@
 package com.techelevator.hr;
 
+import com.techelevator.crm.Customer;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -9,6 +11,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 public class EmployeeTests {
+    private Map<String, Double> servicesRendered = new HashMap<>();
+    Employee danielle = new Employee("Danielle","Ziemba");
 
     @Test
     public void getFullNameReturnsCorrectFormat() {
@@ -34,5 +38,15 @@ public class EmployeeTests {
         employee.raiseSalary(-10); //"raise" by negative 10%
 
         assertEquals("Salary should remain the same when raise percentage is negative.",100, employee.getSalary(),0.0);
+    }
+
+    @Test
+    public void getBalanceDueTest(){
+        servicesRendered.put("nail trims",500.00);
+        servicesRendered.put("waLking",1000.00);
+        servicesRendered.put("petting",250.00);
+        servicesRendered.put("bathing", 200.00);
+
+        Assert.assertEquals(1450.00,danielle.getBalanceDue(servicesRendered),0.00);
     }
 }
