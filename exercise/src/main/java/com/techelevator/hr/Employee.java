@@ -7,20 +7,24 @@ import java.util.Map;
 
 public class Employee extends Person implements Billable {
 
+
     private int employeeId;
     private String title;
     private Department department;
     private double salary;
 
+
     public Employee(String firstName, String lastName) {
         this(firstName, lastName, "", 0);
     }
+
 
     public Employee(String firstName, String lastName, String title, double salary) {
         super(firstName,lastName);
         this.title = title;
         this.salary = salary;
     }
+
 
     @Override
     public String getFullName() {
@@ -33,8 +37,6 @@ public class Employee extends Person implements Billable {
         }
     }
 
-
-    // getters and setters
 
     public int getEmployeeId() {
         return employeeId;
@@ -68,15 +70,17 @@ public class Employee extends Person implements Billable {
         this.salary = salary;
     }
 
+    //we did this part
     @Override
     public double getBalanceDue(Map<String, Double> servicesRendered) {
         double balanceDue=0;
+        //for each adding to balance
         for(Map.Entry<String,Double> services : servicesRendered.entrySet()){
             if(services.getKey().equalsIgnoreCase("walking")){
-                balanceDue+=services.getValue()/2;
+                balanceDue+=services.getValue()/2; //50% discount
             }
             else{
-                balanceDue+=services.getValue();
+                balanceDue+=services.getValue(); //all other services
             }
         }
         return balanceDue;
